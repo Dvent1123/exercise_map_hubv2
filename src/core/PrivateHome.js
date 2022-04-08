@@ -5,8 +5,6 @@ import { isAuth, getCookie, signout } from "../auth/helpers";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import Cali from "../helpers/Cali";
-import Confetti from "react-confetti";
-import { useWindowSize } from "react-use";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 

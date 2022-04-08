@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate,Navigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import Layout from "../core/Layout";
 import axios from "axios";
 import { authenticate, isAuth } from "./helpers";
@@ -16,9 +16,8 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 
-
 const Signin = () => {
-    let navigate = useNavigate();
+  let navigate = useNavigate();
 
   const clickSubmit = (event) => {
     event.preventDefault();
@@ -35,14 +34,13 @@ const Signin = () => {
         authenticate(res, () => {
           isAuth() && isAuth().role === "admin"
             ? navigate("/admin", { replace: true })
-            : navigate("/home", {replace: true});
+            : navigate("/home", { replace: true });
         });
       })
       .catch((error) => {
         toast.error(error.response.data.error);
       });
   };
-
 
   return (
     <Layout>

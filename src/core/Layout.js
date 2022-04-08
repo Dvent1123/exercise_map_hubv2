@@ -220,9 +220,14 @@ const Nav = () => {
               </Button>
               <Button
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, backgroundColor: "#126a75", display: "block",':hover': {
-                  bgcolor: '#418891',
-                }, }}
+                sx={{
+                  my: 2,
+                  backgroundColor: "#126a75",
+                  display: "block",
+                  ":hover": {
+                    bgcolor: "#418891",
+                  },
+                }}
               >
                 {" "}
                 <Link
@@ -333,7 +338,6 @@ const Nav = () => {
 };
 
 const Layout = ({ children, match, history }) => {
-
   return (
     <Fragment>
       {Nav()}
