@@ -23,7 +23,7 @@ const Private = ({ history }) => {
     name: "",
     email: "",
     weight: 114,
-    sex: "",
+    sex: "M",
     password: "",
     buttonText: "Submit",
   });
@@ -154,6 +154,19 @@ const Private = ({ history }) => {
               disabled
             />
             <FormControl sx={{ m: 1, minWidth: 120 }}>
+              <InputLabel id="sex">Sex</InputLabel>
+              <Select
+                labelId="sex"
+                id="sex"
+                value={sex}
+                label="Sex"
+                onChange={handleChange("sex")}
+              >
+                <MenuItem value={"M"}>M</MenuItem>
+                <MenuItem value={"F"}>F</MenuItem>
+              </Select>
+            </FormControl>
+            <FormControl sx={{ m: 1, minWidth: 120 }}>
               <InputLabel id="weight-class">Weight Class</InputLabel>
               <Select
                 labelId="weight-class"
@@ -174,19 +187,6 @@ const Private = ({ history }) => {
                 <MenuItem value={275}>275</MenuItem>
                 <MenuItem value={319}>319</MenuItem>
                 <MenuItem value={320}>320+</MenuItem>
-              </Select>
-            </FormControl>
-            <FormControl sx={{ m: 1, minWidth: 120 }}>
-              <InputLabel id="sex">Sex</InputLabel>
-              <Select
-                labelId="sex"
-                id="sex"
-                value={sex}
-                label="Sex"
-                onChange={handleChange("sex")}
-              >
-                <MenuItem value={"M"}>M</MenuItem>
-                <MenuItem value={"F"}>F</MenuItem>
               </Select>
             </FormControl>
             <TextField

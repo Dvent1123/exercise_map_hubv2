@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate, Navigate } from "react-router-dom";
 import Layout from "../core/Layout";
 import axios from "axios";
@@ -15,9 +15,24 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+import FormControl from "@mui/material/FormControl";
 
 const Signup = ({ history }) => {
   let navigate = useNavigate();
+
+  const [values, setValues] = useState({
+    weight: 114,
+    sex: "M",
+  });
+
+  const { weight, sex } = values;
+
+  const handleChange = (name) => (event) => {
+    setValues({ ...values, [name]: event.target.value });
+  };
 
   const clickSubmit = (event) => {
     event.preventDefault();
@@ -101,6 +116,42 @@ const Signup = ({ history }) => {
               id="password"
               autoComplete="current-password"
             />
+            <FormControl sx={{ m: 1, minWidth: 120 }}>
+              <InputLabel id="sex">Sex</InputLabel>
+              <Select
+                labelId="sex"
+                id="sex"
+                value={sex}
+                label="Sex"
+                onChange={handleChange("sex")}
+              >
+                <MenuItem value={"M"}>M</MenuItem>
+                <MenuItem value={"F"}>F</MenuItem>
+              </Select>
+            </FormControl>
+            <FormControl sx={{ m: 1, minWidth: 120 }}>
+              <InputLabel id="weight-class">Weight Class</InputLabel>
+              <Select
+                labelId="weight-class"
+                id="weight-class"
+                value={weight}
+                label="Weight Class"
+                onChange={handleChange("weight")}
+              >
+                <MenuItem value={114}>114</MenuItem>
+                <MenuItem value={123}>123</MenuItem>
+                <MenuItem value={132}>132</MenuItem>
+                <MenuItem value={148}>148</MenuItem>
+                <MenuItem value={165}>165</MenuItem>
+                <MenuItem value={181}>181</MenuItem>
+                <MenuItem value={198}>198</MenuItem>
+                <MenuItem value={220}>220</MenuItem>
+                <MenuItem value={242}>242</MenuItem>
+                <MenuItem value={275}>275</MenuItem>
+                <MenuItem value={319}>319</MenuItem>
+                <MenuItem value={320}>320+</MenuItem>
+              </Select>
+            </FormControl>
             <Button
               type="submit"
               fullWidth
