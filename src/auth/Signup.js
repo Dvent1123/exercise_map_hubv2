@@ -45,6 +45,8 @@ const Signup = ({ history }) => {
         name: formData.get("name"),
         email: formData.get("email"),
         password: formData.get("password"),
+        weight: weight,
+        sex: sex
       },
     })
       .then((response) => {
@@ -104,7 +106,6 @@ const Signup = ({ history }) => {
               label="Email"
               name="email"
               autoComplete="email"
-              autoFocus
             />
             <TextField
               margin="normal"
