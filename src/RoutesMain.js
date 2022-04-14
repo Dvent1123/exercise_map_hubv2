@@ -19,7 +19,6 @@ const RoutesMain = () => {
         <Route path="/signin" element={<Signin />} />
         <Route path="/private" element={<Private />} />
         <Route path="/home" element={<PrivateHome />} />
-        <Route path="/athlete_type" element={<AthleteType />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>

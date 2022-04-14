@@ -161,17 +161,6 @@ const Nav = () => {
                       </Link>
                     </Typography>
                   </MenuItem>
-
-                  <MenuItem onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">
-                      <Link
-                        to="/athlete_type"
-                        style={{ textDecoration: "none", color: "black" }}
-                      >
-                        Athlete Settings
-                      </Link>
-                    </Typography>
-                  </MenuItem>
                 </div>
               )}
 
@@ -270,7 +259,6 @@ const Nav = () => {
                 onClick={() => {
                   signout(() => {
                     navigate("/", { replace: true });
-                    // history.push("/");
                   });
                 }}
                 sx={{ my: 2, color: "black", display: "block" }}
@@ -307,22 +295,9 @@ const Nav = () => {
                 </Link>
               </Button>
               <Button
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-              >
-                {" "}
-                <Link
-                  to="/athlete_type"
-                  style={{ textDecoration: "none", color: "black" }}
-                >
-                  Athlete Settings
-                </Link>
-              </Button>
-              <Button
                 onClick={() => {
                   signout(() => {
                     navigate("/", { replace: true });
-                    // history.push("/");
                   });
                 }}
                 sx={{ my: 2, color: "black", display: "block" }}

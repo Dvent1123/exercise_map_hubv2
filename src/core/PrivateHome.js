@@ -7,6 +7,8 @@ import "react-toastify/dist/ReactToastify.min.css";
 import Cali from "../helpers/Cali";
 import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
+import WidgetSummary from "../helpers/WidgetSummary";
 
 const PrivateHome = ({ history }) => {
   const [exerciseData, setExerciseData] = useState(null);
@@ -120,11 +122,24 @@ const PrivateHome = ({ history }) => {
 
   return (
     <Layout>
-        <Container spacing={2} sx={{ display: "flex", alignItems: "center", justifyContent: "flex-start", mt: 4}}>
-          <Typography variant="h4" gutterBottom>
-            Hello {name}
-          </Typography>
-        </Container>
+      <Container
+        spacing={2}
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "flex-start",
+          mt: 4,
+        }}
+      >
+        <Typography variant="h4" gutterBottom>
+          Hello {name}
+        </Typography>
+      </Container>
+      <Grid container spacing={3}>
+        <Grid item xs={12} sm={8} md={4}>
+          <WidgetSummary />
+        </Grid>
+      </Grid>
       <ToastContainer />
       <div className="card-container">
         <Cali handleSkillUnlock={handleSkillUnlock} skills={exerciseData} />
