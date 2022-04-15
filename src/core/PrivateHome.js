@@ -9,6 +9,7 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import WidgetSummary from "../helpers/WidgetSummary";
+import PieChart from '../helpers/PieChart'
 
 const PrivateHome = ({ history }) => {
   const [exerciseData, setExerciseData] = useState(null);
@@ -138,6 +139,9 @@ const PrivateHome = ({ history }) => {
       <Grid container spacing={3}>
         <Grid item xs={12} sm={8} md={4}>
           <WidgetSummary />
+        </Grid>
+        <Grid item xs={12} sm={8} md={4}>
+          <PieChart />
         </Grid>
       </Grid>
       <ToastContainer />

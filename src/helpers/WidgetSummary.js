@@ -34,6 +34,11 @@ export default function WidgetSummary() {
         color: "#1976d2",
         bgcolor: "#d1e9fc",
         borderRadius: 5,
+        height: 300,
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center"
       }}
     >
       <Box
@@ -43,17 +48,17 @@ export default function WidgetSummary() {
             "#1976d2",
             0
           )} 0%, ${alpha("#1976d2", 0.24)} 100%)`,
-          margin: "auto",
+          margin: "none",
           display: "flex",
           borderRadius: "50%",
           alignItems: "center",
-          width: 50,
-          height: 50,
+          width: 75,
+          height: 75,
           justifyContent: "center",
           marginBottom: 3,
         }}
       >
-        <LockOpenIcon width={24} height={24} />
+        <LockOpenIcon width={50} height={50} />
       </Box>
 
       <Typography variant="h3">100</Typography>
