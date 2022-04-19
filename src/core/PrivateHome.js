@@ -9,6 +9,7 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import WidgetSummary from "../helpers/WidgetSummary";
+import BarGraph from '../helpers/BarGraph'
 import PieChart from '../helpers/PieChart'
 
 const PrivateHome = ({ history }) => {
@@ -136,9 +137,12 @@ const PrivateHome = ({ history }) => {
           Hello {name}
         </Typography>
       </Container>
-      <Grid container spacing={3}>
+      <Grid container spacing={3} sx={{ display: "flex", justifyContent: "center", alignItems: "center"}}>
         <Grid item xs={12} sm={8} md={4}>
           <WidgetSummary />
+        </Grid>
+        <Grid item xs={12} sm={8} md={4}>
+          <BarGraph />
         </Grid>
         <Grid item xs={12} sm={8} md={4}>
           <PieChart />

@@ -13,36 +13,38 @@ import Card from "@mui/material/Card";
 
 // ----------------------------------------------------------------------
 
-export default function PieChart() {
+export default function BarGraph() {
   const [chartOptions, setChartOptions] = useState({
-    //This is how many are unlocked
-    series: [10, 2, 8, 1, 2],
     options: {
       chart: {
-        width: 380,
-        type: "pie",
+        id: "apexchart-example",
       },
-      labels: [
-        "Difficulty - 1",
-        "Difficulty - 2",
-        "Difficulty - 3",
-        "Difficulty - 4",
-        "Difficulty - 5",
-      ],
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {
-            chart: {
-              width: 200,
-            },
-            legend: {
-              position: "bottom",
-            },
-          },
+      xaxis: {
+        labels: {
+          show: true,
+          rotate: -45,
         },
-      ],
+        title: {
+          text: "Difficulty",
+        },
+        categories: [1, 2, 3, 4, 5],
+      },
     },
+    yaxis: {
+      labels: {
+        show: true,
+        rotate: -45,
+      },
+      title: {
+        text: "Unlocked",
+      },
+    },
+    series: [
+      {
+        name: "Unlocked",
+        data: [10, 7, 4, 6, 2],
+      },
+    ],
   });
 
   return (
@@ -51,8 +53,8 @@ export default function PieChart() {
         py: 3,
         boxShadow: 0,
         textAlign: "center",
-        color: "#ccc49c",
-        bgcolor: "#fff7cd",
+        color: "#9ebfcc",
+        bgcolor: "#d0f2ff",
         borderRadius: 5,
         height: 300,
         display: "flex",
@@ -65,8 +67,9 @@ export default function PieChart() {
       <Chart
         options={chartOptions.options}
         series={chartOptions.series}
-        type="pie"
-        width={380}
+        type="bar"
+        width={315}
+        height={250}
       />
     </Card>
   );
