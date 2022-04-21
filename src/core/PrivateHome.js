@@ -9,11 +9,13 @@ import Container from "@mui/material/Container";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import WidgetSummary from "../helpers/WidgetSummary";
-import BarGraph from '../helpers/BarGraph'
-import PieChart from '../helpers/PieChart'
+import BarGraph from "../helpers/BarGraph";
+import PieChart from "../helpers/PieChart";
 
 const PrivateHome = ({ history }) => {
   const [exerciseData, setExerciseData] = useState(null);
+  const [unlockedExercises, setUnlockedExercises] = useState(null);
+  const [totalUnlocked, setTotalUnlocked] = useState(0);
 
   const [values, setValues] = useState({
     role: "",
@@ -67,6 +69,13 @@ const PrivateHome = ({ history }) => {
           typeOfAthlete
         );
         setExerciseData(athleteExercises);
+        //returns a new array with number of exercises unlocked relative to array index
+        let unlockedExercisesByDifficulty =
+          calculateUnlockedExercises(athleteExercises);
+        setUnlockedExercises(unlockedExercisesByDifficulty);
+        //sets total number of exercises unlocked
+        let total = calculateTotalUnlocked(unlockedExercisesByDifficulty);
+        setTotalUnlocked(total);
       })
       .catch((error) => {
         console.log("private profile error", error);
@@ -76,6 +85,26 @@ const PrivateHome = ({ history }) => {
           });
         }
       });
+  };
+
+  const calculateTotalUnlocked = (athleteExercises) => {
+    let total = 0;
+    athleteExercises.forEach((number) => {
+      total += number;
+    });
+    return total;
+  };
+
+  const calculateUnlockedExercises = (athleteExercises) => {
+    let newUnlockedArray = [0, 0, 0, 0, 0];
+    athleteExercises.forEach((exercise) => {
+      //if exercise is unlocked
+      if (exercise.locked === false) {
+        newUnlockedArray[exercise.diff - 1] =
+          newUnlockedArray[exercise.diff - 1] + 1;
+      }
+    });
+    return newUnlockedArray;
   };
 
   const { name, typeOfAthlete, weight, personalRecords, sex } = values;
@@ -98,6 +127,13 @@ const PrivateHome = ({ history }) => {
       .then((res) => {
         setExerciseData(res.data.skillsArray);
         toast.success("Skill unlocked!");
+        let unlockedExercisesByDifficulty = calculateUnlockedExercises(
+          res.data.skillsArray
+        );
+        setUnlockedExercises(unlockedExercisesByDifficulty);
+        //sets total number of exercises unlocked
+        let total = calculateTotalUnlocked(unlockedExercisesByDifficulty);
+        setTotalUnlocked(total);
       })
       .catch((err) => {
         console.log(err.response.data);
@@ -137,15 +173,27 @@ const PrivateHome = ({ history }) => {
           Hello {name}
         </Typography>
       </Container>
-      <Grid container spacing={3} sx={{ display: "flex", justifyContent: "center", alignItems: "center"}}>
+      <Grid
+        container
+        spacing={3}
+        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+      >
         <Grid item xs={12} sm={8} md={4}>
-          <WidgetSummary />
+          <WidgetSummary totalUnlocked={totalUnlocked} />
         </Grid>
         <Grid item xs={12} sm={8} md={4}>
-          <BarGraph />
+          {unlockedExercises ? (
+            <BarGraph unlockedExercises={unlockedExercises} />
+          ) : (
+            <div></div>
+          )}
         </Grid>
         <Grid item xs={12} sm={8} md={4}>
-          <PieChart />
+          {unlockedExercises ? (
+            <PieChart unlockedExercises={unlockedExercises} />
+          ) : (
+            <div></div>
+          )}
         </Grid>
       </Grid>
       <ToastContainer />

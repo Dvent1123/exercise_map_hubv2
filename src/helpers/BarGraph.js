@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Chart from "react-apexcharts";
 import CardHeader from "@mui/material/CardHeader";
 import Card from "@mui/material/Card";
@@ -13,7 +13,18 @@ import Card from "@mui/material/Card";
 
 // ----------------------------------------------------------------------
 
-export default function BarGraph() {
+export default function BarGraph({ unlockedExercises }) {
+  const [unlocked, setUnlocked] = useState([0,0,0,0,0])
+
+  //gotta figure out how to handle change here
+//   const handlechange = (chartOptions, unlockedExercises) => {
+//     setUnlocked(unlockedExercises)
+//     let newOptions = chartOptions
+//     newOptions = {...chartOptions, chartOptions: [...series, [series]: [{name: "unlocked", data: unlocked}]]}
+//     console.log(' this is in the bar graph')
+//     setChartOptions(newOptions)
+// }
+
   const [chartOptions, setChartOptions] = useState({
     options: {
       chart: {
@@ -42,10 +53,16 @@ export default function BarGraph() {
     series: [
       {
         name: "Unlocked",
-        data: [10, 7, 4, 6, 2],
+        data: unlocked,
       },
     ],
   });
+
+
+//   useEffect(() => {
+//     handlechange(chartOptions, unlockedExercises)
+//  }, [unlocked, unlockedExercises])
+
 
   return (
     <Card

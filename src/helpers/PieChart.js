@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Chart from "react-apexcharts";
 import CardHeader from "@mui/material/CardHeader";
 import Card from "@mui/material/Card";
@@ -13,10 +13,20 @@ import Card from "@mui/material/Card";
 
 // ----------------------------------------------------------------------
 
-export default function PieChart() {
+export default function PieChart({ unlockedExercises }) {
+const [unlocked, setUnlocked] = useState([0,0,0,0,0])
+
+ const handlechange = (chartOptions, unlockedExercises) => {
+     setUnlocked(unlockedExercises)
+     let newOptions = chartOptions
+     newOptions = {...chartOptions, series: unlocked}
+     console.log(newOptions)
+     setChartOptions(newOptions)
+ }
+
   const [chartOptions, setChartOptions] = useState({
     //This is how many are unlocked
-    series: [10, 2, 8, 1, 2],
+    series: unlocked,
     options: {
       chart: {
         width: 380,
@@ -44,6 +54,11 @@ export default function PieChart() {
       ],
     },
   });
+
+  useEffect(() => {
+    handlechange(chartOptions, unlockedExercises)
+ }, [unlocked, unlockedExercises])
+
 
   return (
     <Card

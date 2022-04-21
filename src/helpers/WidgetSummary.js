@@ -1,11 +1,9 @@
 import React from "react";
 import Card from "@mui/material/Card";
-import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import Box from "@mui/material/Box";
-import { alpha, styled } from "@mui/material/styles";
+import { alpha } from "@mui/material/styles";
 
 //Need to get theme color and a color that is lighter for the icon
 // PRIMARY: #d1e9fc
@@ -13,18 +11,7 @@ import { alpha, styled } from "@mui/material/styles";
 // SECONDARY DARK: #9fb7c9
 // Need to find Icon
 
-const IconWrapperStyle = styled("div")(() => ({
-  margin: "auto",
-  display: "flex",
-  borderRadius: "50%",
-  alignItems: "center",
-  width: 8,
-  height: 8,
-  justifyContent: "center",
-  marginBottom: 3,
-}));
-
-export default function WidgetSummary() {
+export default function WidgetSummary({ totalUnlocked } ) {
   return (
     <Card
       sx={{
@@ -52,16 +39,16 @@ export default function WidgetSummary() {
           display: "flex",
           borderRadius: "50%",
           alignItems: "center",
-          width: 75,
-          height: 75,
+          width: 80,
+          height: 80,
           justifyContent: "center",
           marginBottom: 3,
         }}
       >
-        <LockOpenIcon width={50} height={50} />
+        <LockOpenIcon fontSize="large"/>
       </Box>
 
-      <Typography variant="h3">100</Typography>
+      <Typography variant="h2">{totalUnlocked}</Typography>
 
       <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
         Unlocked
