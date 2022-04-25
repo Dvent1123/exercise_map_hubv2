@@ -14,7 +14,7 @@ import Card from "@mui/material/Card";
 // ----------------------------------------------------------------------
 
 export default function BarGraph({ unlockedExercises }) {
-  const [unlocked, setUnlocked] = useState([0,0,0,0,0]);
+  const [unlocked, setUnlocked] = useState([0, 0, 0, 0, 0]);
 
   //gotta figure out how to handle change here
   const handlechange = (unlockedExercises) => {
@@ -57,7 +57,6 @@ export default function BarGraph({ unlockedExercises }) {
 
   useEffect(() => {
     handlechange(unlockedExercises);
-    console.log("this is unlocked after handle change function, bar", unlocked);
   }, [unlocked, unlockedExercises]);
 
   return (
