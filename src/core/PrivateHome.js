@@ -173,29 +173,30 @@ const PrivateHome = ({ history }) => {
           Hello {name}
         </Typography>
       </Container>
-      <Grid
-        container
-        spacing={3}
-        sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
-      >
-        <Grid item xs={12} sm={8} md={4}>
-          <WidgetSummary totalUnlocked={totalUnlocked} />
-        </Grid>
-        <Grid item xs={12} sm={8} md={4}>
-          {unlockedExercises ? (
+      {exerciseData ? (
+        <Grid
+          container
+          spacing={3}
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Grid item xs={12} sm={8} md={4}>
+            <WidgetSummary totalUnlocked={totalUnlocked} />
+          </Grid>
+          <Grid item xs={12} sm={8} md={4}>
             <BarGraph unlockedExercises={unlockedExercises} />
-          ) : (
-            <div></div>
-          )}
-        </Grid>
-        <Grid item xs={12} sm={8} md={4}>
-          {unlockedExercises ? (
+          </Grid>
+          <Grid item xs={12} sm={8} md={4}>
             <PieChart unlockedExercises={unlockedExercises} />
-          ) : (
-            <div></div>
-          )}
+          </Grid>
         </Grid>
-      </Grid>
+      ) : (
+        <div></div>
+      )}
+
       <ToastContainer />
       <div className="card-container">
         <Cali handleSkillUnlock={handleSkillUnlock} skills={exerciseData} />

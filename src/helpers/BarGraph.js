@@ -14,18 +14,21 @@ import Card from "@mui/material/Card";
 // ----------------------------------------------------------------------
 
 export default function BarGraph({ unlockedExercises }) {
-  const [unlocked, setUnlocked] = useState([0,0,0,0,0])
+  const [unlocked, setUnlocked] = useState([0,0,0,0,0]);
 
   //gotta figure out how to handle change here
-//   const handlechange = (chartOptions, unlockedExercises) => {
-//     setUnlocked(unlockedExercises)
-//     let newOptions = chartOptions
-//     newOptions = {...chartOptions, chartOptions: [...series, [series]: [{name: "unlocked", data: unlocked}]]}
-//     console.log(' this is in the bar graph')
-//     setChartOptions(newOptions)
-// }
+  const handlechange = (unlockedExercises) => {
+    setUnlocked(unlockedExercises);
+  };
 
-  const [chartOptions, setChartOptions] = useState({
+  const series = [
+    {
+      name: "Unlocked",
+      data: unlocked,
+    },
+  ];
+
+  const chartOptions = {
     options: {
       chart: {
         id: "apexchart-example",
@@ -50,19 +53,12 @@ export default function BarGraph({ unlockedExercises }) {
         text: "Unlocked",
       },
     },
-    series: [
-      {
-        name: "Unlocked",
-        data: unlocked,
-      },
-    ],
-  });
+  };
 
-
-//   useEffect(() => {
-//     handlechange(chartOptions, unlockedExercises)
-//  }, [unlocked, unlockedExercises])
-
+  useEffect(() => {
+    handlechange(unlockedExercises);
+    console.log("this is unlocked after handle change function, bar", unlocked);
+  }, [unlocked, unlockedExercises]);
 
   return (
     <Card
@@ -81,13 +77,17 @@ export default function BarGraph({ unlockedExercises }) {
       }}
     >
       <CardHeader title={"Exercises Unlocked"} subheader={"By Difficulty"} />
-      <Chart
-        options={chartOptions.options}
-        series={chartOptions.series}
-        type="bar"
-        width={315}
-        height={250}
-      />
+      {unlocked ? (
+        <Chart
+          options={chartOptions.options}
+          series={series}
+          type="bar"
+          width={315}
+          height={250}
+        />
+      ) : (
+        <div></div>
+      )}
     </Card>
   );
 }

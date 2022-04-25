@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Chart from "react-apexcharts";
 import CardHeader from "@mui/material/CardHeader";
 import Card from "@mui/material/Card";
-
+import apexchart from "apexcharts";
 // @mui
 
 // ----------------------------------------------------------------------
@@ -14,21 +14,21 @@ import Card from "@mui/material/Card";
 // ----------------------------------------------------------------------
 
 export default function PieChart({ unlockedExercises }) {
-const [unlocked, setUnlocked] = useState([0,0,0,0,0])
+  const [unlocked, setUnlocked] = useState([0,0,0,0,0]);
 
- const handlechange = (chartOptions, unlockedExercises) => {
-     setUnlocked(unlockedExercises)
-     let newOptions = chartOptions
-     newOptions = {...chartOptions, series: unlocked}
-     console.log(newOptions)
-     setChartOptions(newOptions)
- }
+  const handlechange = (unlockedExercises) => {
+    setUnlocked(unlockedExercises);
+  };
 
-  const [chartOptions, setChartOptions] = useState({
+  const series = {
+      series: unlocked
+  }
+
+  const chartOptions = {
     //This is how many are unlocked
-    series: unlocked,
     options: {
       chart: {
+        id: 3,
         width: 380,
         type: "pie",
       },
@@ -53,12 +53,26 @@ const [unlocked, setUnlocked] = useState([0,0,0,0,0])
         },
       ],
     },
-  });
+  };
+
+
+  
+//   useEffect(() => {
+//     setUnlocked(unlockedExercises);
+//     console.log('this is unlocked, pie', unlocked)
+//   },[])
 
   useEffect(() => {
-    handlechange(chartOptions, unlockedExercises)
- }, [unlocked, unlockedExercises])
+    handlechange(unlockedExercises);
+    // apexchart.exec(3,'updateSeries', unlocked)
+    console.log('this is unlocked after handle change function, pie', unlocked)
+  }, [unlocked, unlockedExercises]);
 
+//   useEffect(() => {
+//     if (unlockedExercises) {
+//       handlechange(chartOptions, unlockedExercises);
+//     }
+//   }, [unlocked, unlockedExercises]);
 
   return (
     <Card
@@ -77,12 +91,16 @@ const [unlocked, setUnlocked] = useState([0,0,0,0,0])
       }}
     >
       <CardHeader title={"Exercises Unlocked"} subheader={"By Difficulty"} />
-      <Chart
-        options={chartOptions.options}
-        series={chartOptions.series}
-        type="pie"
-        width={380}
-      />
+      {unlocked ? (
+        <Chart
+          options={chartOptions.options}
+          series={series.series}
+          type="pie"
+          width={380}
+        />
+      ) : (
+        <div></div>
+      )}
     </Card>
   );
 }
