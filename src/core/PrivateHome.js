@@ -11,10 +11,7 @@ import Grid from "@mui/material/Grid";
 import WidgetSummary from "../helpers/WidgetSummary";
 import BarGraph from "../helpers/BarGraph";
 import PieChart from "../helpers/PieChart";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
-import ButtonGroup from "@mui/material/ButtonGroup";
+import SearchandFilter from "../helpers/SearchandFilter";
 
 const PrivateHome = ({ history }) => {
   const [exerciseData, setExerciseData] = useState(null);
@@ -221,30 +218,9 @@ const PrivateHome = ({ history }) => {
           bends. I work out like a British person." - Ryan Reynolds
         </Typography>
       </Container>
-      <Box
-        sx={{
-          maxWidth: "100%",
-          display: "flex",
-          justifyContent: "center",
-          flexDirection: {xs: "column", sm: "row"},
-          alignItems: {xs: "center", sm: "normal"},
-          mb: 10
-        }}
-      >
-        <Box
-          sx={{
-            width: 700,
-            maxWidth: "100%",
-          }}
-        >
-          <TextField fullWidth label="Search" id="fullWidth" />
-        </Box>
-        <ButtonGroup variant="outlined" aria-label="outlined button group">
-          <Button>A-Z</Button>
-          <Button>Difficulty</Button>
-          <Button>Locked</Button>
-        </ButtonGroup>
-      </Box>
+
+      {exerciseData ? <SearchandFilter skills={exerciseData} /> : <div></div>}
+
       <ToastContainer />
       <div className="card-container">
         <Cali handleSkillUnlock={handleSkillUnlock} skills={exerciseData} />
