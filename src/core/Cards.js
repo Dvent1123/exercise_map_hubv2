@@ -94,57 +94,81 @@ const Cards = ({ skill, handleSkillUnlock }) => {
 
   return (
     //center stuff in here
-    <Container maxWidth="xl" sx={{marginBottom: 3, display: "flex", alignItems: "center", justifyContent: "center"}}>
-        {isOn ? (
-          <Card sx={{ maxWidth: 300 }}>
-            <CardHeader
-              sx={{ textAlign: "center" }}
-              title={exercise.toUpperCase()}
-              subheader={`Difficulty: ${diff}`}
+    <Container
+      maxWidth="xl"
+      sx={{
+        marginBottom: 3,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      {isOn ? (
+        <Card sx={{ maxWidth: 400,maxHeight: 600, height: "100%" }}>
+          <CardHeader
+            sx={{ textAlign: "center" }}
+            title={exercise.toUpperCase()}
+            subheader={`Difficulty: ${diff}`}
+          />
+          <CardMedia
+            component="img"
+            image={lock}
+            alt="Locked"
+            style={{
+              width: "225px",
+              maxHeight: "300px",
+              height: "100%",
+              margin: "auto"
+            }}
+          />
+          <CardContent>
+            <Typography variant="body2" color="text.secondary">
+              {desc}
+            </Typography>
+          </CardContent>
+          <Box
+            sx={{
+              marginTop: 1,
+              marginBottom: 2,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <Unlock
+              handleSkillUnlock={handleSkillUnlock}
+              id={id}
+              unlockSkill={unlockSkill}
+              toggleIsOn={toggleIsOn}
             />
-            <CardMedia component="img" height="300" image={lock} alt="Locked" />
-            <CardContent>
-              <Typography variant="body2" color="text.secondary">
-                {desc}
-              </Typography>
-            </CardContent>
-            <Box
-              sx={{
-                marginTop: 1,
-                marginBottom: 2,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <Unlock
-                handleSkillUnlock={handleSkillUnlock}
-                id={id}
-                unlockSkill={unlockSkill}
-                toggleIsOn={toggleIsOn}
-              />
-            </Box>
-          </Card>
-        ) : (
-          <Card sx={{ maxWidth: 300 }}>
-            <CardHeader
-              sx={{ textAlign: "center" }}
-              title={exercise.toUpperCase()}
-              subheader={`Difficulty: ${diff}`}
-            ></CardHeader>
-            <CardMedia
-              component="img"
-              height="300"
-              image={images[id]}
-              alt="Locked"
-            />
-            <CardContent>
-              <Typography variant="body2" color="text.secondary">
-                {desc}
-              </Typography>
-            </CardContent>
-          </Card>
-        )}
+          </Box>
+        </Card>
+      ) : (
+        <Card sx={{ maxWidth: 400, maxHeight: 600, height: "100%" }}>
+          <CardHeader
+            sx={{ textAlign: "center" }}
+            title={exercise.toUpperCase()}
+            subheader={`Difficulty: ${diff}`}
+          ></CardHeader>
+          <CardMedia
+            component="img"
+            image={images[id]}
+            alt="Locked"
+            style={{
+              width: "auto",
+              maxHeight: "200px",
+              margin: "auto",
+              paddingBottom: 80,
+              paddingTop: 80
+            }}
+          />
+          <CardContent>
+            <Typography variant="body2" color="text.secondary">
+              {desc}
+            </Typography>
+          </CardContent>
+        </Card>
+      )}
     </Container>
   );
 };

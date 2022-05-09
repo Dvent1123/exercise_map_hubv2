@@ -15,6 +15,7 @@ import SearchandFilter from "../helpers/SearchandFilter";
 
 const PrivateHome = ({ history }) => {
   const [exerciseData, setExerciseData] = useState(null);
+  const [defaultData, setDefaultData] = useState(null);
   const [unlockedExercises, setUnlockedExercises] = useState(null);
   const [totalUnlocked, setTotalUnlocked] = useState(0);
 
@@ -70,6 +71,7 @@ const PrivateHome = ({ history }) => {
           typeOfAthlete
         );
         setExerciseData(athleteExercises);
+        setDefaultData(athleteExercises);
         //returns a new array with number of exercises unlocked relative to array index
         let unlockedExercisesByDifficulty =
           calculateUnlockedExercises(athleteExercises);
@@ -175,29 +177,34 @@ const PrivateHome = ({ history }) => {
         </Typography>
       </Container>
 
-      {exerciseData ? (
-        <Grid
-          container
-          spacing={3}
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Grid item xs={12} sm={8} md={4}>
-            <WidgetSummary totalUnlocked={totalUnlocked} />
+      <Container
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {exerciseData ? (
+          <Grid
+            container
+            spacing={10}
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Grid item xs={12} sm={12} md={6}>
+              <WidgetSummary totalUnlocked={totalUnlocked} />
+            </Grid>
+            <Grid item xs={12} sm={12} md={6}>
+              <PieChart unlockedExercises={unlockedExercises} />
+            </Grid>
           </Grid>
-          <Grid item xs={12} sm={8} md={4}>
-            <BarGraph unlockedExercises={unlockedExercises} />
-          </Grid>
-          <Grid item xs={12} sm={8} md={4}>
-            <PieChart unlockedExercises={unlockedExercises} />
-          </Grid>
-        </Grid>
-      ) : (
-        <div></div>
-      )}
+        ) : (
+          <div></div>
+        )}
+      </Container>
 
       <Container
         spacing={2}
@@ -213,13 +220,21 @@ const PrivateHome = ({ history }) => {
         <Typography variant="h3" gutterBottom>
           CALISTHENICS
         </Typography>
-        <Typography variant="h4" gutterBottom>
+        <Typography variant="h4" gutterBottom textAlign={"center"} color="text.secondary">
           "I'm the guy doing calisthenics. I'm doing jumping jacks and deep knee
           bends. I work out like a British person." - Ryan Reynolds
         </Typography>
       </Container>
 
-      {exerciseData ? <SearchandFilter skills={exerciseData} /> : <div></div>}
+      {exerciseData ? (
+        <SearchandFilter
+          skills={exerciseData}
+          setData={setExerciseData}
+          defaultData={defaultData}
+        />
+      ) : (
+        <div></div>
+      )}
 
       <ToastContainer />
       <div className="card-container">

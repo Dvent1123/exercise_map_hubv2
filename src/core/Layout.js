@@ -169,7 +169,6 @@ const Nav = () => {
                   onClick={() => {
                     signout(() => {
                       navigate("/", { replace: true });
-                      // history.push("/");
                     });
                   }}
                 >
@@ -269,7 +268,13 @@ const Nav = () => {
           )}
 
           {isAuth() && isAuth().role === "subscriber" && (
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            <Box
+              sx={{
+                flexGrow: 1,
+                display: { xs: "none", md: "flex" },
+                justifyContent: "flex-end",
+              }}
+            >
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
